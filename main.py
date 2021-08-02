@@ -3,10 +3,12 @@ from flask import render_template
 
 
 app = Flask(__name__)
-@app.route('')
+@app.route('/')
 
 def index():
-    return render_template("templates/index.html")
+    name = 'Hiram'
+    lname = 'Torres'
+    return render_template("index.html",username=name,lastname=lname)
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000)
