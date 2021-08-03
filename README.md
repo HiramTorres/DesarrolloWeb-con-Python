@@ -273,6 +273,24 @@ y así podemos dar formato a nuestro archivo html.
 --- 
 Ahora crearé una referencia para el archivo java script. 
 Para importar ese archivo Javascript colocamos un ```<script>``` en el archivo html de esta forma: 
+
 ```
 <script type="text/javascript" scr="{{ url_for('static', filename='js/scripts.js') }}" >
+```
+---
+Y sucede lo mismo cuando se trata de agregar imágenes. Agregamos una etiqueta ```<img>``` por ejemplo: 
+
+```
+<img src="{{ url_for('static', filename='assets/img/perfil.jpg') }}" alt="">
+```
+--- 
+### Herencia de plantillas
+
+Podemos heredar templates de otros, para este ejemplo crearé un archivo .html base para de ahí pueda heredar al index
+
+en el archivo base creare las etiquetas que un archivo html debe tener por lo que el index ya no las llevará ya que hereda de ese template
+
+Para heredar los archivos .html se puede hacer a través del código en el index:
+```
+{% extends 'base.html' %}
 ```
