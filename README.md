@@ -122,13 +122,137 @@ Se hace un nuevo folder llamado "templates" y ahí colocamos el archivo html par
 
 Posteriormente importamos la funcion de ```render_template```
 
-```
-from flask import render_template
-``` 
+```from flask import render_template``` 
 
 una vez importado nos colocamos en el código de la funcion index y retornamos ```render_templates```
 
 Y esta funcion recibe como argumento el nombre del archivo a renderizar 
+``` return render_template('templates/index.html')```
+
+---
+### Ciclos y condicionales 
+
+Para generar una condición se genera una nueva variable 
+
+``` premium = True```
+
+y se agrega dentro de los parametros
+
 ```
-return render_template('templates/index.html')
+return render_template("index.html",username=name,lastname=lname,premium=premium)
 ```
+Generamos una nueva etiqueta en el index.html
+```
+<p>
+    La página web es premium
+</p>
+```
+Para generar una condición en el template lo hacemos de la siguiente forma 
+```
+{% if premium %}
+
+
+{% endif %}
+``` 
+>Se debe terminar con unas llaves de cierre porque la identación no funciona en los archivos html
+
+Dentro de los condicionales se pueden utilizar los operadores lógicos y ariméticos 
+
+Al igual de que se puede utilizar un ```else``` dentro del condicional 
+
+```
+{% if premium %}
+    <p>
+        La página web es premium.
+    </p>
+{% else %}
+    <p>
+        La página es visible para todo el mundo
+    </p>
+
+{% endif %}
+``` 
+Y también se pueden utilizar ```if``` anidados .
+
+#### Ahora utilizaré un ciclo For en el archivo .html
+
+Generaré una nueva variable llamada skill 
+```
+skills = [Python, Java, C, HTML]
+```
+y quiero utilizar esto como un parámetro 
+
+```
+return return render_template("index.html",username=name,lastname=lname,premium=premium, skills = skills)
+```
+
+Voy a condicionar si la lista posee elementos para mostrar
+
+```
+{% if skills %}
+    <p>listado de skills</p>
+    <ul>
+        {% for skill in skills: %}
+            <li> {{ skill }} </li>
+        {% endfor %}    
+    </ul>
+
+{% endif %}
+
+
+
+```
+
+#### Plantillas Jinja2
+Flask utiliza el motor de templates (platillas) Jinja2 , este es, quizás, una de las librerías más populares de Python, con ella podemos generar documentos HTML de una forma rápida y sencilla.
+
+Al trabajar con Jinja2 debemos tener presentes 3 elementos importantes:
+* Variables ```{{ variable}}```
+* Instrucciones ```{% instrucción %}```
+* Comentarios ```{# comentarios #}```
+
+El único ciclo permitido por *Jinja 2* es el ciclo **for**
+
+Dentro del ciclo podemos acceder a diferentes atributos del objeto loop.
+* index: Interacción actual. El valor comienza en 1
+* index0: Iteración actual. El valor comienza en 0 (Ideal si deseamos replicar el comportamiento de la función enumerate)
+* first: Valor verdadero si nos encontramos en la primera iteración.
+* last: Valor verdadero si nos encontramos en la última iteración.
+* length: Número de iteraciones.
+
+**Ejemplo:**
+```
+<ul>
+    {% for val in [1,2,3,4,5,6,7,8,9] %}
+        <li> {{ loop.index0 }} - {{ val }} </li>
+    {% endfor %}
+</ul>    
+```
+#### FUNCIONES
+Aunque la integración de Flask y Jinja2 nos permite ejecutar ciertas funciones y métodos dentro de nuestro template, habrá ocasiones en las que necesitemos utilizar funciones propias, en esos casos lo que podemos hacer es enviar las funciones al template a través de la función render template.
+```
+def suma(val1, val2):
+    return val1 + val2
+
+def suma_template():
+     return render_template('suma.html', val1=10, 
+                                         val2=30, funcion=suma)
+```
+
+```
+<p>
+La suma de {{ val1 }} + {{ val2 }} es : {{ funcion(val1, val2) }}
+</p>
+```
+--- 
+### Parámetros 
+Para poder generar URLs de forma dinámicas podemos utilizar los parámetros de la siguiente forma: 
+```
+@app.route('/usuario/<username>')
+def usuario(username:
+    return 'Hola' + username
+```
+>Utilizamos los signos de más y menos para identificar el nombre del parámetro con el que trabajaremos 
+
+y despues el parámetro se le da a la función 
+

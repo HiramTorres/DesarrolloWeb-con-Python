@@ -43,6 +43,28 @@
                         {{username}}
                         <span class="text-primary">{{lastname}}</span>
                     </h1>
+                    
+                    {% if premium %}
+                        <p>
+                            La página web es premium.
+                        </p>
+                    {% else %}
+                        <p>
+                            La página es visible para todo el mundo
+                        </p>
+
+                    {% endif %}
+
+                    {% if skills %}
+                        <p>listado de skills: </p>
+                        <ul>
+                            {% for skill in skills %}
+                        <li> {{ skill }} </li>
+                            {% endfor %}    
+                        </ul>
+
+                    {% endif %}
+
                     <div class="subheading mb-5">
                         León Guanajuato · México ·
                         <a href="hiram.ht10@gmail.com">hiram.ht10@gmail.com</a>
