@@ -254,5 +254,25 @@ def usuario(username:
 ```
 >Utilizamos los signos de más y menos para identificar el nombre del parámetro con el que trabajaremos 
 
-y despues el parámetro se le da a la función 
+y despues el parámetro se le da a la función. 
 
+--- 
+### Archivos estáticos 
+Son los archivos css,Javascript etc. 
+
+Crearemos una nueva carpeta la cual debe tener el nombre de 'static', y dentro de esta carpeta pondremos todos nuestros archivos Css, JavaScrip o imágenes en sus respectivas carpetas. 
+
+Dentro de mi archivo .html colocaré una sección de ```<link>``` para de ahí jalas nuestros estilos css ya guardados dentro del archivo correspondiente. Todo eso de la siguiente forma: 
+
+```
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+```
+
+y así podemos dar formato a nuestro archivo html. 
+
+--- 
+Ahora crearé una referencia para el archivo java script. 
+Para importar ese archivo Javascript colocamos un ```<script>``` en el archivo html de esta forma: 
+```
+<script type="text/javascript" scr="{{ url_for('static', filename='js/scripts.js') }}" >
+```

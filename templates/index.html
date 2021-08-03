@@ -9,11 +9,13 @@
         <link rel="icon" type="image/x-icon" href="assets/img/Hiram_Mesa de trabajo 1 copia.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+        
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -46,7 +48,7 @@
                     
                     {% if premium %}
                         <p>
-                            La página web es premium.
+                            Página web con hosting en Github
                         </p>
                     {% else %}
                         <p>
@@ -55,15 +57,6 @@
 
                     {% endif %}
 
-                    {% if skills %}
-                        <p>listado de skills: </p>
-                        <ul>
-                            {% for skill in skills %}
-                        <li> {{ skill }} </li>
-                            {% endfor %}    
-                        </ul>
-
-                    {% endif %}
 
                     <div class="subheading mb-5">
                         León Guanajuato · México ·
@@ -144,15 +137,16 @@
 
                     </ul>
                     <div class="subheading mb-3">Otras Herramientas</div>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Autocad
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Solidworks
-                        </li>
+                        {% if skills %}
+                            <p>listado de skills: </p>
+                            <ul>
+                                {% for skill in skills %}
+                            <li> {{ skill }} </li>
+                                {% endfor %}    
+                            </ul>
+
+                        {% endif %}
+                
                     </ul>
                 </div>
             </section>
