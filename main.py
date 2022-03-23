@@ -10,7 +10,7 @@ def index():
     lname = 'Torres'
     premium = True #La condición debe ser verdadera para que a la hora de renderizar se cree la etiqueta
     skills = ["Python", "Java", "C", "HTML"]
-    return render_template("index.html",username=name,
+    return render_template("templates/index.html",username=name,
                             lastname=lname,premium=premium,
                             skills = skills )
 
